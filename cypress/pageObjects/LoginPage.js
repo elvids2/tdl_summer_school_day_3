@@ -29,6 +29,9 @@ class LoginPage extends BasePage {
   static get checkAccount(){
     return cy.get('[id="mat-menu-panel-0"]');
   }
+  
+
+  
 
   
 

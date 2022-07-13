@@ -9,7 +9,7 @@ describe("Juice-shop without auto login", () => {
     HomePage.meWantItButton.click();
   });
 
-  it.only("Login", () => {
+  it("Login", () => {
     LoginPage.accountButton.click();
     LoginPage.loginButton.click();
     LoginPage.emailBar.type('demo');
@@ -18,25 +18,30 @@ describe("Juice-shop without auto login", () => {
     LoginPage.accountButton.click();
     LoginPage.checkAccount.contains('demo').should('contain','demo');
   });
+  function generateRandomIntegerInRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-  //it("Registration", () => {
-    // Click Account button
-    // Login button
-    // Click "Not yet a customer?"
-    // Find - how to generate random number in JS
-    // Use that number to genarate unique email address, e.g.: email_7584@ebox.com
-    // Save that email address to some variable
-    // Fill in password field and repeat password field with same password
-    // Click on Security Question menu
-    // Select  "Name of your favorite pet?"
-    // Fill in answer
-    // Click Register button
-    // Set email value to previously created email
-    // Set password value to previously used password value
-    // Click login button
-    // Click Account button
-    // Validate that account name (with previously created email address) appears in the menu section
-  //});
+let value5 = generateRandomIntegerInRange(1000, 9999);
+let email =('email_'+value5+'@ebox.com')
+let pass=12345;
+  it.only("Registration", () => {
+    RegistrationPage.accountButton.click();
+    RegistrationPage.loginButton.click();
+    RegistrationPage.newAccount.click();
+    RegistrationPage.emailBar.type(email);
+    RegistrationPage.passwordBar.type(pass);
+    RegistrationPage.repeatPasswordBar.type(pass);
+    RegistrationPage.securityBar.click();
+    RegistrationPage.securityBarSelect.contains(' Name of your favorite pet? ').click();
+    RegistrationPage.securityAnswer.type('Bob');
+    RegistrationPage.register.click();
+    LoginPage.emailBar.type(email);
+    LoginPage.passBar.type(pass);
+    LoginPage.login1Button.click();
+    LoginPage.accountButton.click();
+    LoginPage.checkAccount.contains(email).should('contain',email);
+  });
 });
 
 describe("Juice-shop with Auto login", () => {
