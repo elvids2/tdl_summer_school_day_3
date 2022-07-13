@@ -51,6 +51,13 @@ class HomePage extends BasePage {
   static get amount(){
     return cy.get('[class="mat-option-text"]');
   }
+  static get addToBasket(){
+    return cy.get('[class="mat-focus-indicator btn-basket mat-button mat-raised-button mat-button-base mat-primary ng-star-inserted"]');
+  }
+  static get basketButton(){
+    return cy.get('[class="mat-focus-indicator buttons mat-button mat-button-base ng-star-inserted"]');
+  }
+  
   
   
   

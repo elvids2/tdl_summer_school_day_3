@@ -1,6 +1,12 @@
 import HomePage from "../pageObjects/HomePage";
 import LoginPage from "../pageObjects/LoginPage";
 import RegistrationPage from "../pageObjects/RegistrationPage";
+import BasketPage from "../pageObjects/BasketPage";
+import SelectAddressesPage from "../pageObjects/SelectAddressPage";
+import DeliveryMethodPage from "../pageObjects/DeliveryMethodPage";
+import PaymentOptionsPage from "../pageObjects/PaymentOptionsPage";
+import OrderSummaryPage from "../pageObjects/OrderSummaryPage";
+import OrderCompletePage from "../pageObjects/OrderCompletePage";
 
 describe("Juice-shop without auto login", () => {
   beforeEach(() => {
@@ -93,7 +99,7 @@ describe("Juice-shop with Auto login", () => {
     HomePage.validateReview.should('contain', 'Tastes like metal');
     
   });
-  it.only("Validate product card amount", () => {
+  it("Validate product card amount", () => {
     HomePage.defaultAmount.should('contain', '12');
     HomePage.expandDefaultAmount.click();
     HomePage.amount.contains("24").click();
@@ -104,29 +110,23 @@ describe("Juice-shop with Auto login", () => {
     
   });
   
-  
-  
-
-  // Create scenario - Buy Girlie T-shirt
-  // Click on search icon
-  // Search for Girlie
-  // Add to basket "Girlie"
-  // Click on "Your Basket" button
-  // Create page object - BasketPage
-  // Click on "Checkout" button
-  // Create page object - SelectAddressPage
-  // Select address containing "United Fakedom"
-  // Click Continue button
-  // Create page object - DeliveryMethodPage
-  // Select delivery speed Standard Delivery
-  // Click Continue button
-  // Create page object - PaymentOptionsPage
-  // Select card that ends with "5678"
-  // Click Continue button
-  // Create page object - OrderSummaryPage
-  // Click on "Place your order and pay"
-  // Create page object - OrderCompletionPage
-  // Validate confirmation - "Thank you for your purchase!"
+  it.only("Buy Girlie T-shirt", () => {
+    HomePage.searchButton.click();
+    HomePage.searchInput.type('Girlie{enter}');
+    HomePage.addToBasket.click();
+    HomePage.basketButton.click();
+    BasketPage.checkoutButton.click();
+    SelectAddressesPage.clickUK.click();
+    SelectAddressesPage.clickContinue.click();
+    DeliveryMethodPage.deliveryChoice.contains('Standard Delivery').click();
+    DeliveryMethodPage.continue.contains('Continue').click();
+    PaymentOptionsPage.clickRadio.click();
+    PaymentOptionsPage.continuePay.contains('Continue').click();
+    OrderSummaryPage.placeOrder.click();
+    OrderCompletePage.purchaseValidation.should('contain', 'Thank you for your purchase!');
+    
+  });
+ 
 
   // Create scenario - Add address
   // Click on Account
