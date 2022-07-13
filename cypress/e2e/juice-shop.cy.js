@@ -25,7 +25,7 @@ describe("Juice-shop without auto login", () => {
 let value5 = generateRandomIntegerInRange(1000, 9999);
 let email =('email_'+value5+'@ebox.com')
 let pass=12345;
-  it.only("Registration", () => {
+  it("Registration", () => {
     RegistrationPage.accountButton.click();
     RegistrationPage.loginButton.click();
     RegistrationPage.newAccount.click();
@@ -46,17 +46,17 @@ let pass=12345;
 
 describe("Juice-shop with Auto login", () => {
   beforeEach(() => {
-   //cy.login("demo", "demo");
-    //HomePage.visit();
+   cy.login("demo", "demo");
+    HomePage.visit();
   });
-/*
-  it("Search and validate Lemon", () => {
-    // Click on search icon
-    // Search for Lemon
-    // Select a product card - Lemon Juice (500ml)
-    // Validate that the card (should) contains "Sour but full of vitamins."
+
+  it.only("Search and validate Lemon", () => {
+    HomePage.searchButton.click();
+    HomePage.searchInput.type('Lemon{enter}');
+    HomePage.lemon.click();
+    HomePage.validateLemon.should('contain','Sour but full of vitamins.');
   });
-  */
+  
 
   // Create scenario - Search 500ml and validate Lemon, while having multiple cards
   // Click on search icon
