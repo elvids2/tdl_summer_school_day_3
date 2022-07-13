@@ -64,7 +64,7 @@ describe("Juice-shop with Auto login", () => {
     HomePage.validateLemon.should('contain','Sour but full of vitamins.');
   });
   
-  it.only("Search 500ml and validate cards", () => {
+  it("Search 500ml and validate cards", () => {
     HomePage.searchButton.click();
     HomePage.searchInput.type('500ml{enter}');
     HomePage.findItem.contains('Eggfruit Juice (500ml)').click();
@@ -76,25 +76,13 @@ describe("Juice-shop with Auto login", () => {
     HomePage.findItem.contains('Strawberry Juice (500ml)').click();
     HomePage.validateLemon.should('contain','Sweet & tasty!');
   });
-
-  // Create scenario - Search 500ml and validate cards
-  // Click on search icon
-  // Search for 500ml
-  // Select a product card - Eggfruit Juice (500ml)
-  // Validate that the card (should) contains "Now with even more exotic flavour."
-  // Close the card
-  // Select a product card - Lemon Juice (500ml)
-  // Validate that the card (should) contains "Sour but full of vitamins."
-  // Close the card
-  // Select a product card - Strawberry Juice (500ml)
-  // Validate that the card (should) contains "Sweet & tasty!"
-
-  // Create scenario - Read a review
-  // Click on search icon
-  // Search for King
-  // Select a product card - OWASP Juice Shop "King of the Hill" Facemask
-  // Click expand reviews button/icon (wait for reviews to appear)
-  // Validate review - K33p5 y0ur ju1cy 5plu773r 70 y0ur53lf!
+  it.only("Read and review", () => {
+    HomePage.searchButton.click();
+    HomePage.searchInput.type('King{enter}');
+    HomePage.findItem.contains('OWASP Juice Shop "King of the Hill" Facemask').click();
+    HomePage.expandReview.click();
+    HomePage.validateReview.should('contain', 'K33p5 y0ur ju1cy 5plu773r 70 y0ur53lf!');
+  });
 
   // Create scenario - Add a review
   // Click on search icon

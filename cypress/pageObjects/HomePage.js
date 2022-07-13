@@ -30,6 +30,15 @@ class HomePage extends BasePage {
   static get escape(){
     return cy.get('[class="container mat-typography"]');
   }
+  static get expandReview(){
+    return cy.get('[class="mat-expansion-indicator ng-tns-c150-14 ng-trigger ng-trigger-indicatorRotate ng-star-inserted"]');
+  }
+  static get validateReview(){
+    return cy.get('[class="mat-tooltip-trigger review-text"]');
+  }
+
+  
+  
 
   
   
