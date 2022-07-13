@@ -50,19 +50,20 @@ describe("Juice-shop with Auto login", () => {
     HomePage.visit();
   });
 
-  it.only("Search and validate Lemon", () => {
+  it("Search and validate Lemon", () => {
     HomePage.searchButton.click();
     HomePage.searchInput.type('Lemon{enter}');
     HomePage.lemon.click();
     HomePage.validateLemon.should('contain','Sour but full of vitamins.');
   });
   
-
-  // Create scenario - Search 500ml and validate Lemon, while having multiple cards
-  // Click on search icon
-  // Search for 500ml
-  // Select a product card - Lemon Juice (500ml)
-  // Validate that the card (should) contains "Sour but full of vitamins."
+  it.only("Search 500ml and validate Lemon", () => {
+    HomePage.searchButton.click();
+    HomePage.searchInput.type('500ml{enter}');
+    HomePage.findItem.contains('Lemon Juice (500ml)').click();
+    HomePage.validateLemon.should('contain','Sour but full of vitamins.');
+  });
+ 
 
   // Create scenario - Search 500ml and validate cards
   // Click on search icon

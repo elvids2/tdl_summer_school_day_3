@@ -24,6 +24,10 @@ class HomePage extends BasePage {
   static get validateLemon() {
     return cy.get('[class="container mat-typography"]');
   }
+  static get findItem(){
+    return cy.get('[class="mat-grid-list"]');
+  }
+
   
   
   
