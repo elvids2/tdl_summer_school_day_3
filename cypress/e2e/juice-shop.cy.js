@@ -9,17 +9,17 @@ describe("Juice-shop without auto login", () => {
     HomePage.meWantItButton.click();
   });
 
-  it("Login", () => {
-    // Click Account button
-    // Click Login button
-    // Set email value to "demo"
-    // Set password value to "demo"
-    // Click Log in
-    // Click Account button
-    // Validate that "demo" account name appears in the menu section
+  it.only("Login", () => {
+    LoginPage.accountButton.click();
+    LoginPage.loginButton.click();
+    LoginPage.emailBar.type('demo');
+    LoginPage.passBar.type('demo');
+    LoginPage.login1Button.click();
+    LoginPage.accountButton.click();
+    LoginPage.checkAccount.contains('demo').should('contain','demo');
   });
 
-  it("Registration", () => {
+  //it("Registration", () => {
     // Click Account button
     // Login button
     // Click "Not yet a customer?"
@@ -36,21 +36,22 @@ describe("Juice-shop without auto login", () => {
     // Click login button
     // Click Account button
     // Validate that account name (with previously created email address) appears in the menu section
-  });
+  //});
 });
 
 describe("Juice-shop with Auto login", () => {
   beforeEach(() => {
-    cy.login("demo", "demo");
-    HomePage.visit();
+   //cy.login("demo", "demo");
+    //HomePage.visit();
   });
-
+/*
   it("Search and validate Lemon", () => {
     // Click on search icon
     // Search for Lemon
     // Select a product card - Lemon Juice (500ml)
     // Validate that the card (should) contains "Sour but full of vitamins."
   });
+  */
 
   // Create scenario - Search 500ml and validate Lemon, while having multiple cards
   // Click on search icon
