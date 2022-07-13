@@ -7,6 +7,8 @@ import DeliveryMethodPage from "../pageObjects/DeliveryMethodPage";
 import PaymentOptionsPage from "../pageObjects/PaymentOptionsPage";
 import OrderSummaryPage from "../pageObjects/OrderSummaryPage";
 import OrderCompletePage from "../pageObjects/OrderCompletePage";
+import SavedAddressesPage from "../pageObjects/SavedAddressesPage";
+import CreateAddressPage from "../pageObjects/CreateAddressPage";
 
 describe("Juice-shop without auto login", () => {
   beforeEach(() => {
@@ -16,13 +18,13 @@ describe("Juice-shop without auto login", () => {
   });
 
   it("Login", () => {
-    LoginPage.accountButton.click();
+    HomePage.accountButton.click();
     LoginPage.loginButton.click();
     LoginPage.emailBar.type('demo');
     LoginPage.passBar.type('demo');
     LoginPage.login1Button.click();
-    LoginPage.accountButton.click();
-    LoginPage.checkAccount.contains('demo').should('contain','demo');
+    HomePage.accountButton.click();
+    HomePage.checkAccount.contains('demo').should('contain','demo');
   });
   function generateRandomIntegerInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -32,7 +34,7 @@ let value5 = generateRandomIntegerInRange(1000, 9999);
 let email =('email_'+value5+'@ebox.com')
 let pass=12345;
   it("Registration", () => {
-    RegistrationPage.accountButton.click();
+    HomePage.accountButton.click();
     RegistrationPage.loginButton.click();
     RegistrationPage.newAccount.click();
     RegistrationPage.emailBar.type(email);
@@ -45,8 +47,8 @@ let pass=12345;
     LoginPage.emailBar.type(email);
     LoginPage.passBar.type(pass);
     LoginPage.login1Button.click();
-    LoginPage.accountButton.click();
-    LoginPage.checkAccount.contains(email).should('contain',email);
+    HomePage.accountButton.click();
+    HomePage.checkAccount.contains(email).should('contain',email);
   });
 });
 
@@ -110,7 +112,7 @@ describe("Juice-shop with Auto login", () => {
     
   });
   
-  it.only("Buy Girlie T-shirt", () => {
+  it("Buy Girlie T-shirt", () => {
     HomePage.searchButton.click();
     HomePage.searchInput.type('Girlie{enter}');
     HomePage.addToBasket.click();
@@ -126,18 +128,21 @@ describe("Juice-shop with Auto login", () => {
     OrderCompletePage.purchaseValidation.should('contain', 'Thank you for your purchase!');
     
   });
- 
-
-  // Create scenario - Add address
-  // Click on Account
-  // Click on Orders & Payment
-  // Click on My saved addresses
-  // Create page object - SavedAddressesPage
-  // Click on Add New Address
-  // Create page object - CreateAddressPage
-  // Fill in the necessary information
-  // Click Submit button
-  // Validate that previously added address is visible
+  it.only("Add address", () => {
+    HomePage.accountButton.click();
+    HomePage.checkAccount.contains('Orders & Payment').click();
+    HomePage.savedAdresses.contains('My saved addresses').click();
+    SavedAddressesPage.createAdress.click();
+    CreateAddressPage.countryField.type('Afrika');
+    CreateAddressPage.nameField.type('Bob');
+    CreateAddressPage.mobileField.type('2734012')
+    CreateAddressPage.zipField.type('LV-3130');
+    CreateAddressPage.addressField.type('Jungle street 5');
+    CreateAddressPage.cityField.type('Paris');
+    CreateAddressPage.stateField.type('Washington');
+    CreateAddressPage.submitAddress.click();
+    SavedAddressesPage.validateAdress.should('contain', 'Jungle street 5, Paris, Washington, LV-3130')
+  });
 
   // Create scenario - Add payment option
   // Click on Account

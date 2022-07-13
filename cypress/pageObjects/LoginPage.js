@@ -23,12 +23,7 @@ class LoginPage extends BasePage {
   static get login1Button(){
     return cy.get('[class="mat-focus-indicator mat-raised-button mat-button-base mat-primary"]');
   }
-  static get accountButton(){
-    return cy.get('[id="navbarAccount"]');
-  }
-  static get checkAccount(){
-    return cy.get('[id="mat-menu-panel-0"]');
-  }
+  
   
 
   

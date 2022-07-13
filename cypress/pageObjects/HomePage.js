@@ -57,7 +57,15 @@ class HomePage extends BasePage {
   static get basketButton(){
     return cy.get('[class="mat-focus-indicator buttons mat-button mat-button-base ng-star-inserted"]');
   }
-  
+  static get accountButton(){
+    return cy.get('[id="navbarAccount"]');
+  }
+  static get checkAccount(){
+    return cy.get('[id="mat-menu-panel-0"]');
+  }
+  static get savedAdresses(){
+    return cy.get('[class="mat-focus-indicator mat-menu-item ng-tns-c248-5 ng-star-inserted"]')
+  }
   
   
   
