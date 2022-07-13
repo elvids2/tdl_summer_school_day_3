@@ -27,6 +27,9 @@ class HomePage extends BasePage {
   static get findItem(){
     return cy.get('[class="mat-grid-list"]');
   }
+  static get escape(){
+    return cy.get('[class="container mat-typography"]');
+  }
 
   
   

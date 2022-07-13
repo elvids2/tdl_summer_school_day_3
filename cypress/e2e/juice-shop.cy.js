@@ -57,13 +57,25 @@ describe("Juice-shop with Auto login", () => {
     HomePage.validateLemon.should('contain','Sour but full of vitamins.');
   });
   
-  it.only("Search 500ml and validate Lemon", () => {
+  it("Search 500ml and validate Lemon", () => {
     HomePage.searchButton.click();
     HomePage.searchInput.type('500ml{enter}');
     HomePage.findItem.contains('Lemon Juice (500ml)').click();
     HomePage.validateLemon.should('contain','Sour but full of vitamins.');
   });
- 
+  
+  it.only("Search 500ml and validate cards", () => {
+    HomePage.searchButton.click();
+    HomePage.searchInput.type('500ml{enter}');
+    HomePage.findItem.contains('Eggfruit Juice (500ml)').click();
+    HomePage.validateLemon.should('contain','Now with even more exotic flavour.');
+    HomePage.escape.type('{esc}');
+    HomePage.findItem.contains('Lemon Juice (500ml)').click();
+    HomePage.validateLemon.should('contain','Sour but full of vitamins.');
+    HomePage.escape.type('{esc}');
+    HomePage.findItem.contains('Strawberry Juice (500ml)').click();
+    HomePage.validateLemon.should('contain','Sweet & tasty!');
+  });
 
   // Create scenario - Search 500ml and validate cards
   // Click on search icon
