@@ -76,12 +76,22 @@ describe("Juice-shop with Auto login", () => {
     HomePage.findItem.contains('Strawberry Juice (500ml)').click();
     HomePage.validateLemon.should('contain','Sweet & tasty!');
   });
-  it.only("Read and review", () => {
+  it("Read and review", () => {
     HomePage.searchButton.click();
     HomePage.searchInput.type('King{enter}');
     HomePage.findItem.contains('OWASP Juice Shop "King of the Hill" Facemask').click();
     HomePage.expandReview.click();
     HomePage.validateReview.should('contain', 'K33p5 y0ur ju1cy 5plu773r 70 y0ur53lf!');
+  });
+  it.only("Add and review", () => {
+    HomePage.searchButton.click();
+    HomePage.searchInput.type('Raspberry{enter}');
+    HomePage.findItem.contains('Raspberry Juice (1000ml)').click();
+    HomePage.writeReview.click().type('Tastes like metal');
+    HomePage.submitReview.click();
+    HomePage.expandReview.click();
+    HomePage.validateReview.should('contain', 'Tastes like metal');
+    
   });
 
   // Create scenario - Add a review

@@ -36,6 +36,15 @@ class HomePage extends BasePage {
   static get validateReview(){
     return cy.get('[class="mat-tooltip-trigger review-text"]');
   }
+  static get writeReview(){
+    return cy.get('[id="mat-input-1"]');
+  }
+  static get submitReview(){
+    return cy.get('[id="submitButton"]');
+  }
+  
+
+  
 
   
   
