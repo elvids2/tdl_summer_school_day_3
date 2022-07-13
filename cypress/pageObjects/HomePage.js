@@ -66,6 +66,11 @@ class HomePage extends BasePage {
   static get savedAdresses(){
     return cy.get('[class="mat-focus-indicator mat-menu-item ng-tns-c248-5 ng-star-inserted"]')
   }
+  static get paymentOption(){
+    return cy.get('[class="mat-focus-indicator mat-menu-item ng-tns-c248-5 ng-star-inserted"]')
+  }
+  
+  
   
   
   

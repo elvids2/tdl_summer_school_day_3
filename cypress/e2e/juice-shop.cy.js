@@ -9,6 +9,7 @@ import OrderSummaryPage from "../pageObjects/OrderSummaryPage";
 import OrderCompletePage from "../pageObjects/OrderCompletePage";
 import SavedAddressesPage from "../pageObjects/SavedAddressesPage";
 import CreateAddressPage from "../pageObjects/CreateAddressPage";
+import SavedPaymentMethodsPage from "../pageObjects/SavedPaymentMethodsPage";
 
 describe("Juice-shop without auto login", () => {
   beforeEach(() => {
@@ -128,7 +129,7 @@ describe("Juice-shop with Auto login", () => {
     OrderCompletePage.purchaseValidation.should('contain', 'Thank you for your purchase!');
     
   });
-  it.only("Add address", () => {
+  it("Add address", () => {
     HomePage.accountButton.click();
     HomePage.checkAccount.contains('Orders & Payment').click();
     HomePage.savedAdresses.contains('My saved addresses').click();
@@ -143,17 +144,19 @@ describe("Juice-shop with Auto login", () => {
     CreateAddressPage.submitAddress.click();
     SavedAddressesPage.validateAdress.should('contain', 'Jungle street 5, Paris, Washington, LV-3130')
   });
-
-  // Create scenario - Add payment option
-  // Click on Account
-  // Click on Orders & Payment
-  // Click on My payment options
-  // Create page object - SavedPaymentMethodsPage
-  // Click Add new card
-  // Fill in Name
-  // Fill in Card Number
-  // Set expiry month to 7
-  // Set expiry year to 2090
-  // Click Submit button
-  // Validate that the card shows up in the list
+  it.only("Add payment option", () => {
+    HomePage.accountButton.click();
+    HomePage.checkAccount.contains('Orders & Payment').click();
+    HomePage.paymentOption.contains(' My Payment Options ').click();
+    SavedPaymentMethodsPage.addNewCard.click();
+    SavedPaymentMethodsPage.payName.type('Bob');
+    SavedPaymentMethodsPage.payCardNumber.type('1234567890123456');
+    SavedPaymentMethodsPage.payMonth.select(6);
+    SavedPaymentMethodsPage.payYear.select(10);
+    SavedPaymentMethodsPage.submit.click();
+    SavedPaymentMethodsPage.validatePay.should('contain','Bob');
+    SavedPaymentMethodsPage.validatePay.should('contain','************3456');
+    SavedPaymentMethodsPage.validatePay.should('contain','7/2090');
+    
+  });
 });
