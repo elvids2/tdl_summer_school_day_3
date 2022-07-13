@@ -42,6 +42,17 @@ class HomePage extends BasePage {
   static get submitReview(){
     return cy.get('[id="submitButton"]');
   }
+  static get defaultAmount(){
+    return cy.get('[class="mat-paginator-page-size ng-star-inserted"]');
+  }
+  static get expandDefaultAmount(){
+    return cy.get('[id="mat-select-value-1"]');
+  }
+  static get amount(){
+    return cy.get('[class="mat-option-text"]');
+  }
+  
+  
   
 
   

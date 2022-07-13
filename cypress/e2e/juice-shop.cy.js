@@ -83,7 +83,7 @@ describe("Juice-shop with Auto login", () => {
     HomePage.expandReview.click();
     HomePage.validateReview.should('contain', 'K33p5 y0ur ju1cy 5plu773r 70 y0ur53lf!');
   });
-  it.only("Add and review", () => {
+  it("Add and review", () => {
     HomePage.searchButton.click();
     HomePage.searchInput.type('Raspberry{enter}');
     HomePage.findItem.contains('Raspberry Juice (1000ml)').click();
@@ -93,22 +93,19 @@ describe("Juice-shop with Auto login", () => {
     HomePage.validateReview.should('contain', 'Tastes like metal');
     
   });
-
-  // Create scenario - Add a review
-  // Click on search icon
-  // Search for Raspberry
-  // Select a product card - Raspberry Juice (1000ml)
-  // Type in review - "Tastes like metal"
-  // Click Submit
-  // Click expand reviews button/icon (wait for reviews to appear)
-  // Validate review -  "Tastes like metal"
-
-  // Create scenario - Validate product card amount
-  // Validate that the default amount of cards is 12
-  // Change items per page (at the bottom of page) to 24
-  // Validate that the amount of cards is 24
-  // Change items per page (at the bottom of page) to 36
-  // Validate that the amount of cards is 35
+  it.only("Validate product card amount", () => {
+    HomePage.defaultAmount.should('contain', '12');
+    HomePage.expandDefaultAmount.click();
+    HomePage.amount.contains("24").click();
+    HomePage.defaultAmount.should('contain', '24');
+    HomePage.expandDefaultAmount.click();
+    HomePage.amount.contains("36").click();
+    HomePage.defaultAmount.should('contain', '36');
+    
+  });
+  
+  
+  
 
   // Create scenario - Buy Girlie T-shirt
   // Click on search icon
