@@ -159,4 +159,6 @@ describe("Juice-shop with Auto login", () => {
     SavedPaymentMethodsPage.validatePay.should('contain','7/2090');
     
   });
+  
+
 });
